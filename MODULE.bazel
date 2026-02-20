@@ -6,6 +6,10 @@ module(
 
 
 bazel_dep(name = "bazel_lib", version = "3.2.1")
+local_path_override(
+    module_name = "bazel_lib",
+    path = "../bzl/bazel-lib"
+)
 
 
 bazel_dep(name = "bazel_skylib_gazelle_plugin", version = "1.8.2")

@@ -4,6 +4,12 @@ load("@stardoc//stardoc:stardoc.bzl", "stardoc")
 
 
 def bzl_library(name, srcs, **kw):
+    """Declares a bzl library target, and targets used to keep updated documentation.
+
+    Args:
+      srcs: list of source files, please put the file first.
+      kw: rest of the args, similar to those in `@bazel_lib//:bzl_library.bzl`.
+    """
     bazel_bzl_library(
         name = name,
         srcs = srcs,
