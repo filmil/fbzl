@@ -34,6 +34,8 @@
     "https://bcr.bazel.build/modules/bazel_features/1.4.1/MODULE.bazel": "e45b6bb2350aff3e442ae1111c555e27eac1d915e77775f6fdc4b351b758b5d7",
     "https://bcr.bazel.build/modules/bazel_features/1.9.0/MODULE.bazel": "885151d58d90d8d9c811eb75e3288c11f850e1d6b481a8c9f766adee4712358b",
     "https://bcr.bazel.build/modules/bazel_features/1.9.1/MODULE.bazel": "8f679097876a9b609ad1f60249c49d68bfab783dd9be012faf9d82547b14815a",
+    "https://bcr.bazel.build/modules/bazel_lib/3.2.1/MODULE.bazel": "5d1dc35da5c2f09910ffa22b07c3fbbb3468702e396d1d8a83c5f21132f77a4f",
+    "https://bcr.bazel.build/modules/bazel_lib/3.2.1/source.json": "5dae6a8d8c49f6346c746d58d82984c40adbbf46e41e7a38b5872bd5a075a560",
     "https://bcr.bazel.build/modules/bazel_skylib/1.0.3/MODULE.bazel": "bcb0fd896384802d1ad283b4e4eb4d718eebd8cb820b0a2c3a347fb971afd9d8",
     "https://bcr.bazel.build/modules/bazel_skylib/1.1.1/MODULE.bazel": "1add3e7d93ff2e6998f9e118022c84d163917d912f5afafb3058e3d2f1545b5e",
     "https://bcr.bazel.build/modules/bazel_skylib/1.2.0/MODULE.bazel": "44fe84260e454ed94ad326352a698422dbe372b21a1ac9f3eab76eb531223686",
@@ -242,6 +244,7 @@
     "https://raw.githubusercontent.com/filmil/bazel-registry/main/modules/bazel_features/1.4.1/MODULE.bazel": "not found",
     "https://raw.githubusercontent.com/filmil/bazel-registry/main/modules/bazel_features/1.9.0/MODULE.bazel": "not found",
     "https://raw.githubusercontent.com/filmil/bazel-registry/main/modules/bazel_features/1.9.1/MODULE.bazel": "not found",
+    "https://raw.githubusercontent.com/filmil/bazel-registry/main/modules/bazel_lib/3.2.1/MODULE.bazel": "not found",
     "https://raw.githubusercontent.com/filmil/bazel-registry/main/modules/bazel_skylib/1.0.3/MODULE.bazel": "not found",
     "https://raw.githubusercontent.com/filmil/bazel-registry/main/modules/bazel_skylib/1.1.1/MODULE.bazel": "not found",
     "https://raw.githubusercontent.com/filmil/bazel-registry/main/modules/bazel_skylib/1.2.0/MODULE.bazel": "not found",
@@ -397,8 +400,8 @@
   "moduleExtensions": {
     "@@bazel_lib+//lib:extensions.bzl%host": {
       "general": {
-        "bzlTransitiveDigest": "9H2S3KjD/2G+7IEq4QonPMOdS7bn6e1kWHyD+CHkVjg=",
-        "usagesDigest": "AHugBBO6+mk0ZaJsfYvWWyhrI0kJ8PAp+vHMaX6pTxA=",
+        "bzlTransitiveDigest": "8dHZX4BpxhGvfVAJvV5banG9ca04FtMdcN2spdGLTZk=",
+        "usagesDigest": "oLROxsEHd6qaL9q1uJMrGeF2rOd5BU2HpofsI6szNx8=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},

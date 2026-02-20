@@ -6,9 +6,10 @@ module(
 
 
 bazel_dep(name = "bazel_lib", version = "3.2.1")
-local_path_override(
+single_version_override(
     module_name = "bazel_lib",
-    path = "../bzl/bazel-lib"
+    patches = ["//third_party/bazel-lib:0001.patch"],
+    patch_strip = 1,
 )
 
 
