@@ -1,0 +1,160 @@
+From 30703a2cf0c21532b335e4e50e397b24f65bd5fa Mon Sep 17 00:00:00 2001
+From: Filip Filmar <filmil@gmail.com>
+Date: Fri, 20 Feb 2026 07:29:46 +0000
+Subject: [PATCH] fix: patch for visibility and dev dependencies
+
+---
+ 0001.patch   | 77 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ BUILD.bazel  |  1 +
+ MODULE.bazel | 10 ++-----
+ 3 files changed, 81 insertions(+), 7 deletions(-)
+ create mode 100644 0001.patch
+
+diff --git a/0001.patch b/0001.patch
+new file mode 100644
+index 0000000..69da0c7
+--- /dev/null
++++ b/0001.patch
+@@ -0,0 +1,77 @@
++From f9299783ca5148dba67d7ff83c3f4bcb2c2514c1 Mon Sep 17 00:00:00 2001
++From: Filip Filmar <filmil@gmail.com>
++Date: Fri, 20 Feb 2026 07:29:46 +0000
++Subject: [PATCH] fix: patch for visibility and dev dependencies
++
++---
++ BUILD.bazel  |  1 +
++ MODULE.bazel | 12 ++++--------
++ 2 files changed, 5 insertions(+), 8 deletions(-)
++
++diff --git a/BUILD.bazel b/BUILD.bazel
++index 84b8d25..2e02380 100644
++--- a/BUILD.bazel
+++++ b/BUILD.bazel
++@@ -120,6 +120,7 @@ bzl_library(
++     name = "bzl_library",
++     srcs = ["bzl_library.bzl"],
++     deps = ["@bazel_skylib//:bzl_library"],
+++    visibility = ["//visibility:public"],
++ )
++ 
++ # Place the .vale.ini file in bazel-bin so the relative path it contains
++diff --git a/MODULE.bazel b/MODULE.bazel
++index 7d3110a..8ea0fc9 100644
++--- a/MODULE.bazel
+++++ b/MODULE.bazel
++@@ -38,26 +38,22 @@ IS_RELEASE = False
++ bazel_dep(
++     name = "gazelle",
++     version = "0.40.0",
++-    dev_dependency = IS_RELEASE,
++ )
++ bazel_dep(
++     name = "rules_go",
++     version = "0.59.0",
++-    dev_dependency = IS_RELEASE,
++     repo_name = "io_bazel_rules_go",
++ )
++ 
++ go_sdk = use_extension(
++     "@io_bazel_rules_go//go:extensions.bzl",
++     "go_sdk",
++-    dev_dependency = IS_RELEASE,
++ )
++ go_sdk.from_file(go_mod = "//:go.mod")
++ 
++ go_deps = use_extension(
++     "@gazelle//:extensions.bzl",
++     "go_deps",
++-    dev_dependency = IS_RELEASE,
++ )
++ go_deps.from_file(go_mod = "//:go.mod")
++ use_repo(
++@@ -67,16 +63,16 @@ use_repo(
++     "org_golang_x_sys",
++ )
++ 
++-host = use_extension("@bazel_lib//lib:extensions.bzl", "host", dev_dependency = True)
+++host = use_extension("@bazel_lib//lib:extensions.bzl", "host")
++ host.host()
++ use_repo(host, "bazel_lib_host")
++ 
++ host_platform = use_extension("@platforms//host:extension.bzl", "host_platform")
++ use_repo(host_platform, "host_platform")
++ 
++-bazel_dep(name = "bazel_skylib_gazelle_plugin", version = "1.8.2", dev_dependency = True)
++-bazel_dep(name = "buildifier_prebuilt", version = "6.4.0", dev_dependency = True)
++-bazel_dep(name = "external_test_repo", dev_dependency = True)
+++bazel_dep(name = "bazel_skylib_gazelle_plugin", version = "1.8.2")
+++bazel_dep(name = "buildifier_prebuilt", version = "6.4.0")
+++bazel_dep(name = "external_test_repo")
++ local_path_override(
++     module_name = "external_test_repo",
++     path = "./lib/tests/external_test_repo",
++-- 
++2.34.1
++
+diff --git a/BUILD.bazel b/BUILD.bazel
+index 84b8d25..2e02380 100644
+--- a/BUILD.bazel
++++ b/BUILD.bazel
+@@ -120,6 +120,7 @@ bzl_library(
+     name = "bzl_library",
+     srcs = ["bzl_library.bzl"],
+     deps = ["@bazel_skylib//:bzl_library"],
++    visibility = ["//visibility:public"],
+ )
+ 
+ # Place the .vale.ini file in bazel-bin so the relative path it contains
+diff --git a/MODULE.bazel b/MODULE.bazel
+index 7d3110a..6f31135 100644
+--- a/MODULE.bazel
++++ b/MODULE.bazel
+@@ -38,26 +38,22 @@ IS_RELEASE = False
+ bazel_dep(
+     name = "gazelle",
+     version = "0.40.0",
+-    dev_dependency = IS_RELEASE,
+ )
+ bazel_dep(
+     name = "rules_go",
+     version = "0.59.0",
+-    dev_dependency = IS_RELEASE,
+     repo_name = "io_bazel_rules_go",
+ )
+ 
+ go_sdk = use_extension(
+     "@io_bazel_rules_go//go:extensions.bzl",
+     "go_sdk",
+-    dev_dependency = IS_RELEASE,
+ )
+ go_sdk.from_file(go_mod = "//:go.mod")
+ 
+ go_deps = use_extension(
+     "@gazelle//:extensions.bzl",
+     "go_deps",
+-    dev_dependency = IS_RELEASE,
+ )
+ go_deps.from_file(go_mod = "//:go.mod")
+ use_repo(
+@@ -67,15 +63,15 @@ use_repo(
+     "org_golang_x_sys",
+ )
+ 
+-host = use_extension("@bazel_lib//lib:extensions.bzl", "host", dev_dependency = True)
++host = use_extension("@bazel_lib//lib:extensions.bzl", "host")
+ host.host()
+ use_repo(host, "bazel_lib_host")
+ 
+ host_platform = use_extension("@platforms//host:extension.bzl", "host_platform")
+ use_repo(host_platform, "host_platform")
+ 
+-bazel_dep(name = "bazel_skylib_gazelle_plugin", version = "1.8.2", dev_dependency = True)
+-bazel_dep(name = "buildifier_prebuilt", version = "6.4.0", dev_dependency = True)
++bazel_dep(name = "bazel_skylib_gazelle_plugin", version = "1.8.2")
++bazel_dep(name = "buildifier_prebuilt", version = "6.4.0")
+ bazel_dep(name = "external_test_repo", dev_dependency = True)
+ local_path_override(
+     module_name = "external_test_repo",
+-- 
+2.34.1
+
