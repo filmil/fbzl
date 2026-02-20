@@ -10,3 +10,4 @@ lib_bzl_library(
         "@stardoc//stardoc:stardoc_lib",
     ],
 )
+
