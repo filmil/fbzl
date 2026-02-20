@@ -7,7 +7,7 @@
 ## foo
 
 <pre>
-load("@fshlib//:doc.bzl", "foo")
+load("@fbzl//:doc.bzl", "foo")
 
 foo(<a href="#foo-bar">bar</a>)
 </pre>
