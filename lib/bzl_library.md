@@ -7,7 +7,7 @@
 ## bzl_library
 
 <pre>
-load("@fshlib//lib:bzl_library.bzl", "bzl_library")
+load("@fbzl//lib:bzl_library.bzl", "bzl_library")
 
 bzl_library(<a href="#bzl_library-name">name</a>, <a href="#bzl_library-srcs">srcs</a>, <a href="#bzl_library-kw">**kw</a>)
 </pre>
